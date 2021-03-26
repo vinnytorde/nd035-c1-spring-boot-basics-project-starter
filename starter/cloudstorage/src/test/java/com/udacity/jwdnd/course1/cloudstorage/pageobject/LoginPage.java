@@ -1,7 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.pageobject;
 
 import com.udacity.jwdnd.course1.cloudstorage.testutils.JavascriptEvents;
-import java.awt.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
