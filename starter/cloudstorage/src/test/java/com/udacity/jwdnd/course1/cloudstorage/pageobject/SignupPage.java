@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.pageobject;
 
+import com.udacity.jwdnd.course1.cloudstorage.testutils.JavascriptEvents;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,17 +25,17 @@ public class SignupPage {
   @FindBy(css = "button[type=submit]")
   private WebElement submitButton;
 
-  @FindBy(css = ".alert-dark")
-  private WebElement successMessage;
-
   @FindBy(css = ".alert-dark a")
   private WebElement successMessageRedirectLink;
 
   @FindBy(css = ".alert-danger")
   private WebElement errorMessage;
 
+  private final WebDriver driver;
+
   public SignupPage(WebDriver webDriver) {
     PageFactory.initElements(webDriver, this);
+    driver = webDriver;
   }
 
   public void fillFirstName(String value) {
@@ -55,13 +56,10 @@ public class SignupPage {
 
   public void submitSignupForm() {
     submitButton.click();
+    JavascriptEvents.waitForReadyState(driver);
   }
 
   public String getErrorMessage() {
     return errorMessage.getText();
-  }
-
-  public String getSuccessMessage() {
-    return successMessage.getText();
   }
 }

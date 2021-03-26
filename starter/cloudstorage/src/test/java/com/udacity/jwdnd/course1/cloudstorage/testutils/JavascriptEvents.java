@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class JavascriptEvents {
   public static void waitForReadyState(WebDriver driver) {
-    JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
     new WebDriverWait(driver, 10)
         .until(
             webDriver ->

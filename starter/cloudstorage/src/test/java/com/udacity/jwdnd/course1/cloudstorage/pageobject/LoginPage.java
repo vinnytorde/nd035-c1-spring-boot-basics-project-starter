@@ -23,6 +23,9 @@ public class LoginPage {
   @FindBy(css = ".alert-danger")
   private WebElement errorMessage;
 
+  @FindBy(className = "alert-dark")
+  private WebElement successMessage;
+
   public LoginPage(WebDriver webDriver) {
     this.driver = webDriver;
     PageFactory.initElements(webDriver, this);
@@ -49,5 +52,9 @@ public class LoginPage {
     fillPwd(pwd);
     submitLoginForm();
     JavascriptEvents.waitForReadyState(driver);
+  }
+
+  public String getSuccessMessage() {
+    return successMessage.getText();
   }
 }

@@ -15,6 +15,12 @@ public class ResultsPage {
   @FindBy(css = ".alert-success a")
   private WebElement successMessageLink;
 
+  @FindBy(css = ".alert-danger a")
+  private WebElement errorMessageLink;
+
+  @FindBy(css = ".alert-danger span")
+  private WebElement errorMessage;
+
   public ResultsPage(WebDriver webDriver) {
     this.driver = webDriver;
     this.wait = new WebDriverWait(webDriver, 10);
@@ -25,5 +31,16 @@ public class ResultsPage {
     wait.until(webDriver -> successMessageLink.isDisplayed());
     JavascriptEvents.click(successMessageLink, driver);
     JavascriptEvents.waitForReadyState(driver);
+  }
+
+  public void clickOnErrorMessageLink() {
+    wait.until(webDriver -> errorMessageLink.isDisplayed());
+    JavascriptEvents.click(errorMessageLink, driver);
+    JavascriptEvents.waitForReadyState(driver);
+  }
+
+  public String getErrorMessageText() {
+    wait.until(webDriver -> errorMessage.isDisplayed());
+    return errorMessage.getText();
   }
 }

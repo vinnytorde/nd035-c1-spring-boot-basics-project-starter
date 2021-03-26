@@ -6,4 +6,5 @@ public class Attributes {
   public static final String NOTES = "notes";
   public static final String CREDENTIALS = "credentials";
   public static final String FILES = "files";
+  public static final String UNKNOWN_ERROR = "unknownError";
 }

@@ -89,9 +89,8 @@ class CloudStorageApplicationTests {
     signupPage.fillUsername(loginUsername);
     signupPage.fillPwd(loginPwd);
     signupPage.submitSignupForm();
-    assertEquals(
-        "You successfully signed up! Please continue to the login page.",
-        signupPage.getSuccessMessage());
+    assertTrue(LoginPage.urlPath.substring(1).equalsIgnoreCase(driver.getTitle()));
+    assertEquals("You successfully signed up!", loginPage.getSuccessMessage());
   }
 
   @Test
@@ -128,6 +127,18 @@ class CloudStorageApplicationTests {
     assertTrue(driver.getCurrentUrl().contains(LoginPage.urlPath));
     driver.get(domainSupplier.get() + HomePage.urlPath);
     assertTrue(driver.getCurrentUrl().endsWith(LoginPage.urlPath));
+  }
+
+  @Test
+  @Order(2)
+  public void errorPageNavigation() {
+    driver.get(domainSupplier.get() + LoginPage.urlPath);
+    loginPage.loginUser(loginUsername, loginPwd);
+    driver.get(domainSupplier.get() + "/not-a-page");
+    assertEquals(
+        "Page not found. Click here to go to homepage.", resultsPage.getErrorMessageText());
+    resultsPage.clickOnErrorMessageLink();
+    assertTrue(driver.getCurrentUrl().endsWith(HomePage.urlPath));
   }
 
   @Test
