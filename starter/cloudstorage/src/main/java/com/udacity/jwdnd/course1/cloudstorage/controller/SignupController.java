@@ -29,10 +29,10 @@ public class SignupController {
     try {
       userService.createUser(user);
       model.addAttribute(Attributes.SUCCESS, true);
+      return Templates.LOGIN;
     } catch (Exception e) {
       model.addAttribute(Attributes.ERROR, true);
+      return Templates.SIGNUP;
     }
-
-    return Templates.SIGNUP;
   }
 }

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class CustomErrorController implements ErrorController {
 
-    @GetMapping("/error")
-    public String getErrorPage(Model model){
-        model.addAttribute(Attributes.UNKNOWN_ERROR, true);
-        return Templates.RESULT;
-    }
+  @GetMapping("/error")
+  public String getErrorPage(Model model) {
+    model.addAttribute(Attributes.UNKNOWN_ERROR, true);
+    return Templates.RESULT;
+  }
 
-    @Override
-    public String getErrorPath() {
-        return null;
-    }
+  @Override
+  public String getErrorPath() {
+    return null;
+  }
 }

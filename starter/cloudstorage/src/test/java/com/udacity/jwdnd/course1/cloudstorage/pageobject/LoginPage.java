@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.pageobject;
 
 import com.udacity.jwdnd.course1.cloudstorage.testutils.JavascriptEvents;
+import java.awt.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,9 @@ public class LoginPage {
 
   @FindBy(css = ".alert-danger")
   private WebElement errorMessage;
+
+  @FindBy(className = "alert-dark")
+  private WebElement successMessage;
 
   public LoginPage(WebDriver webDriver) {
     this.driver = webDriver;
@@ -49,5 +53,9 @@ public class LoginPage {
     fillPwd(pwd);
     submitLoginForm();
     JavascriptEvents.waitForReadyState(driver);
+  }
+
+  public String getSuccessMessage() {
+    return successMessage.getText();
   }
 }
